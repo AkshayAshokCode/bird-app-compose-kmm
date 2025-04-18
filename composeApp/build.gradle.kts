@@ -33,6 +33,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation("io.ktor:ktor-client-android:3.1.2")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -43,6 +44,11 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation("media.kamel:kamel-image-default:1.0.3")
+            implementation("io.ktor:ktor-client-core:3.1.2")
+        }
+        iosMain.dependencies {
+            implementation("io.ktor:ktor-client-darwin:3.1.2")
         }
     }
 }

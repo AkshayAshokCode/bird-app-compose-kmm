@@ -15,6 +15,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import bird_app_compose_kmm.composeapp.generated.resources.Res
 import bird_app_compose_kmm.composeapp.generated.resources.compose_multiplatform
+import io.kamel.image.KamelImage
+import io.kamel.image.asyncPainterResource
 
 @Composable
 @Preview
@@ -28,7 +30,10 @@ fun App() {
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
+                    KamelImage(
+                        asyncPainterResource("https://sebi.io/demo-image-api/pigeon/vladislav-nikonov-yVYaUSwkTOs-unsplash.jpg"),
+                        contentDescription = "Pigeon",
+                    )
                     Text("Compose: $greeting")
                 }
             }
