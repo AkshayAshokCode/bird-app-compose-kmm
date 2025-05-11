@@ -13,8 +13,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 data class BirdUiState(
-    val birds: List<BirdImage> = emptyList()
-)
+    val birds: List<BirdImage> = emptyList(),
+    val selectedCategory: String? = null
+){
+    val categories = birds.map { it.category }.toSet()
+    val selectedImages = birds.filter { it.category == selectedCategory }
+}
 
 class BirdsViewModel: ViewModel() {
     private val _uiState = MutableStateFlow(BirdUiState())
@@ -28,12 +32,18 @@ class BirdsViewModel: ViewModel() {
 
     init {
         updateImages()
+        selectCategory("PIGEON")
     }
 
     override fun onCleared() {
         httpClient.close()
     }
 
+    fun selectCategory(category: String?) {
+        _uiState.update { it.copy(selectedCategory = category) }
+    }
+
+    // Not making this private because it can be used by composable on refresh functionality
     fun updateImages() {
         viewModelScope.launch {
             val images = getImages()
