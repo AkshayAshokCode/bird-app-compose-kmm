@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    kotlin("plugin.serialization") version "2.1.20"
 }
 
 kotlin {
@@ -46,6 +47,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation("media.kamel:kamel-image-default:1.0.3")
             implementation("io.ktor:ktor-client-core:3.1.2")
+            implementation("io.ktor:ktor-client-content-negotiation:3.1.2")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.2")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+            api("dev.icerock.moko:mvvm-core:0.16.1")
+            api("dev.icerock.moko:mvvm-compose:0.16.1")
         }
         iosMain.dependencies {
             implementation("io.ktor:ktor-client-darwin:3.1.2")
